@@ -1,29 +1,28 @@
 import socket
 
+clients = []
+flag = True
+
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-server.bind(('localhost', 9090))
+server.bind((socket.gethostbyname(socket.gethostname()), 9090))
 
 server.listen()
 
-client, address = server.accept()
-print('')
+print('Сервер запущен!')
 
+while flag:
+    message, addr = server.recvfrom(1024)
 
+    if addr not in clients:
+        clients.append(addr)
 
-flag = True
+    print(message.decode('utf-8'))
+    for client in clients:
+        if client != addr:
+            server.sendto(message, client)
 
-while flag == True:
-    name = input('')
-    message = client.recv(1024).decode('utf-8')
-    if message == '':
+    if message == 'стоп':
         flag = False
-    else:
-        print(f'{name}: {message}')
-    client
+        print('Сервер остановлен!')
 
-
-
-
-
-
-
+server.close()
