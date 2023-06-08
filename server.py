@@ -14,7 +14,7 @@ conn, addr = server.accept()
 print(f'{addr}  - присоединился к чату')
 
 while flag:
-    message = server.recv(1024).decode('utf-8')     #не понял для чего. Вроде для получения данных от клиента в размере 1 Кб
+    message = conn.recv(1024).decode('utf-8')     #не понял для чего. Вроде для получения данных от клиента в размере 1 Кб
 
     if addr not in clients:                 #если нету адреса клиента в списке уже подключенных клиентов
         clients.append(addr)
