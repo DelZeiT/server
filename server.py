@@ -5,7 +5,7 @@ clients = []    #список адресов клиеннтов
 flag = True
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((socket.gethostbyname(socket.gethostname()), 9090))     #назначаем адрес для сервера
+server.bind(('localhost', 9090))     #назначаем адрес для сервера
 
 server.listen(5)        #прослушиваем указанный порт на получение сигналов
 print('Сервер запущен!')
