@@ -19,7 +19,7 @@ while flag:
     if addr not in clients:                 #если нету адреса клиента в списке уже подключенных клиентов
         clients.append(addr)
 
-    print(message.decode('utf-8'))          #отправляем задекодированное сообщение
+    print(message)          #отправляем задекодированное сообщение
     for client in clients:
         if client != addr:                  #чтобы клиент не видел свое же сообщение
             conn.send(message)
